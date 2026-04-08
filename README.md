@@ -1,6 +1,6 @@
 # Task List App
 
-A simple to-do list app built with HTML, CSS, and JavaScript. Great for beginners!
+A simple to-do list app built with HTML, CSS, and JavaScript.
 
 ---
 
@@ -9,20 +9,25 @@ A simple to-do list app built with HTML, CSS, and JavaScript. Great for beginner
 The project has three files that each do a different job:
 
 ### [index.html](index.html)
+
 This is the structure of the page — what the browser reads first. It contains:
+
 - A text `<input>` where the user types a new task
 - A `<button>` labelled "Add"
 - An empty `<ul>` (unordered list) where tasks will appear
 
 ### [style.css](style.css)
+
 Controls how the page looks — colours, spacing, fonts, etc. Currently empty, so everything uses the browser's default styling.
 
 ### [script.js](script.js)
+
 This is the brain. Here's what each part does:
 
 ```js
 document.addEventListener("DOMContentLoaded", function () { ... });
 ```
+
 Waits until the HTML has fully loaded before running any JavaScript. This prevents errors caused by trying to find elements that don't exist yet.
 
 ```js
@@ -30,6 +35,7 @@ const input  = document.querySelector("#taskInput");
 const button = document.querySelector("#addBtn");
 const list   = document.querySelector("#taskList");
 ```
+
 Grabs references to the three HTML elements by their `id` so JavaScript can interact with them.
 
 ```js
@@ -41,7 +47,9 @@ function addTask() {
     input.value = "";
 }
 ```
+
 `addTask` is called whenever the user wants to add an item. It:
+
 1. Reads the text from the input box (`.value`) and removes leading/trailing spaces (`.trim()`)
 2. Creates a new `<li>` element
 3. Sets its text to what the user typed
@@ -54,6 +62,7 @@ input.addEventListener("keydown", function (event) {
     if (event.key === "Enter") { addTask(); }
 });
 ```
+
 Listens for two ways to trigger `addTask`: clicking the button, or pressing Enter inside the input.
 
 ---
@@ -68,13 +77,7 @@ These are great practice challenges! Each one is self-contained, so you can do t
 
 Right now items stay on the list forever. Make it so clicking a task deletes it.
 
-**Hint:** Inside `addTask`, after you create `li`, add a click listener to it:
-```js
-li.addEventListener("click", function () {
-    li.remove();
-});
-```
-`remove()` deletes an element from the page entirely.
+**Hint:** Each `<li>` is a JavaScript object. Look up how to add a click listener to an element — the same way the button already has one. Then search for a method that removes an element from the page.
 
 ---
 
@@ -82,11 +85,7 @@ li.addEventListener("click", function () {
 
 If the user clicks Add without typing anything, a blank item is added. Stop that from happening.
 
-**Hint:** At the top of `addTask`, check whether `taskText` is empty and return early if it is:
-```js
-if (taskText === "") return;
-```
-`return` stops the function from running any further.
+**Hint:** `taskText` is already available at the top of `addTask`. Check its value before doing anything else — if it's empty, the function should stop early without adding anything.
 
 ---
 
@@ -94,29 +93,13 @@ if (taskText === "") return;
 
 Let the user wipe the whole list with one click.
 
-**Hint:** Add a new button in `index.html`:
-```html
-<button id="clearBtn">Clear All</button>
-```
-Then in `script.js`, grab it and listen for clicks:
-```js
-const clearBtn = document.querySelector("#clearBtn");
-clearBtn.addEventListener("click", function () {
-    list.innerHTML = "";
-});
-```
-Setting `innerHTML` to an empty string removes all child elements (every `<li>`) at once.
+**Hint:** You'll need to add a new button to the HTML and wire it up in JavaScript, just like the Add button was. Then figure out how to empty the `<ul>` — think about what property holds its contents.
 
 ---
 
 ### 4 — Improve the styling
 
-Open [style.css](style.css) and start adding rules. Some ideas to try:
-- `font-family` on `body` to change the font
-- `background-color` on `.container` to add a card effect
-- `padding` and `border-radius` to give elements breathing room
-- `cursor: pointer` on `li` to show the pointer cursor when hovering over items (useful once you add challenge 1)
-- `list-style: none` on `ul` to remove the bullet points
+Open [style.css](style.css) and start experimenting. Think about: fonts, colours, spacing, and how the list items look and feel to interact with. Search for CSS properties as you go — you don't need to know them all upfront.
 
 ---
 
@@ -124,15 +107,4 @@ Open [style.css](style.css) and start adding rules. Some ideas to try:
 
 Display something like "3 tasks" that updates automatically as items are added or removed.
 
-**Hint:** Add an element in `index.html` to hold the count:
-```html
-<p id="taskCount">0 tasks</p>
-```
-Then write a helper function in `script.js` and call it every time the list changes:
-```js
-function updateCount() {
-    const count = list.querySelectorAll("li").length;
-    document.querySelector("#taskCount").textContent = count + " tasks";
-}
-```
-Call `updateCount()` at the end of `addTask`, and again inside the clear/remove handlers so the number stays accurate.
+**Hint:** You'll need a place in the HTML to display the number, and a way to count how many `<li>` elements are currently in the list. Think about when that count needs to be recalculated — it's more than just when items are added.
