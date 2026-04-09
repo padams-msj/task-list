@@ -108,3 +108,10 @@ Open [style.css](style.css) and start experimenting. Think about: fonts, colours
 Display something like "3 tasks" that updates automatically as items are added or removed.
 
 **Hint:** You'll need a place in the HTML to display the number, and a way to count how many `<li>` elements are currently in the list. Think about when that count needs to be recalculated — it's more than just when items are added.
+
+
+### 6 — Add "Priority" options
+
+Figure out a way to let users designate the priority of an entry. Color-code the entries on the list, for example make high-priority entries red.
+
+**Hint:** A simple way to start would be to add a checkbox next to the text input that says "High Priority." If the checkbox is checked when the entry is added, tag it as high-priority. You can directly tweak the li.style.color property, or find another way to track which entries are high-priority. To get more advanced, use a dropdown with "Low", "Medium", and "High Priority" settings.
