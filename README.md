@@ -109,6 +109,7 @@ Display something like "3 tasks" that updates automatically as items are added o
 
 **Hint:** You'll need a place in the HTML to display the number, and a way to count how many `<li>` elements are currently in the list. Think about when that count needs to be recalculated — it's more than just when items are added.
 
+---
 
 ### 6 — Add "Priority" options
 
